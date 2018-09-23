@@ -57,7 +57,7 @@ From: nvidia/cuda:9.0-cudnn7-devel
         libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev \
         libxvidcore-dev x264 v4l-utils libgtk-3-dev
 
-    # Ball in Maze dependencies
+    # simulation dependencies
     apt-get install cmake cmake-curses-gui
     apt-get install libxaw7-dev libxt-dev
     apt-get install freeglut3-dev
