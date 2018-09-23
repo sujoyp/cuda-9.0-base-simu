@@ -9,6 +9,7 @@ From: nvidia/cuda:9.0-cudnn7-devel
 
     # Workaround for https://github.com/keras-team/keras/issues/9567
     apt-get install -y --allow-downgrades --no-install-recommends \
+        --allow-change-held-packages \
         libcudnn7=7.0.5.15-1+cuda9.0 libcudnn7-dev=7.0.5.15-1+cuda9.0 
     
     # Utility and support packages
@@ -27,7 +28,7 @@ From: nvidia/cuda:9.0-cudnn7-devel
         libgraphviz-dev liblapack-dev swig libxft-dev libxml2-dev \
         libxslt-dev zlib1g-dev
  
-    # Python modules from system package manager
+    # Python modules from stem package manager
     apt-get install -y python-numpy python-scipy python-nose python-h5py \
         python-skimage python-matplotlib python-pandas python-sklearn \
         python-sympy python-virtualenv
@@ -58,21 +59,23 @@ From: nvidia/cuda:9.0-cudnn7-devel
         libxvidcore-dev x264 v4l-utils libgtk-3-dev
 
     # simulation dependencies
-    apt-get install cmake cmake-curses-gui
-    apt-get install libxaw7-dev libxt-dev
-    apt-get install freeglut3-dev
-    apt-get install libfreetype6-dev
-    apt-get install libxrandr-dev
-    apt-get install --no-install-recommends libboost-all-dev
-    apt-get install zlib1g-dev libfreeimage-dev libois-dev libtinyxml-dev libzzip-dev libcppunit-dev libglew-dev libdevil-dev
-    apt-get install libeigen3-dev
+    apt-get install -y cmake cmake-curses-gui
+    apt-get install -y libxaw7-dev libxt-dev
+    apt-get install -y freeglut3-dev
+    apt-get install -y libfreetype6-dev
+    apt-get install -y libxrandr-dev
+    apt-get install -y --no-install-recommends libboost-all-dev
+    apt-get install -y zlib1g-dev libfreeimage-dev libois-dev libtinyxml-dev libzzip-dev libcppunit-dev libglew-dev libdevil-dev
+    apt-get install -y libeigen3-dev
 
     # PIL (actually Pillow)
     pip install --no-cache-dir Pillow
     
     # Jupyter and jupyterlab
     pip install --no-cache-dir jupyter
-    pip install --no-cache-dir jupyterlab
+    # Jupyterlab doesn't support Python 2.7 
+    #pip install --no-cache-dir jupyterlab
+    
 
     # Various useful Python packages
     pip install --no-cache-dir pygraphviz
@@ -84,7 +87,7 @@ From: nvidia/cuda:9.0-cudnn7-devel
     pip install --no-cache-dir statsmodels
     pip install --no-cache-dir restview
     pip install --no-cache-dir tinkerer
-    pip install --no-cache-dir Pweave
+    #pip install --no-cache-dir Pweave
     pip install --no-cache-dir numba
 
     # Gnuplot
@@ -92,5 +95,4 @@ From: nvidia/cuda:9.0-cudnn7-devel
 
     # Clean up
     apt-get -y autoremove
-    rm -rvf /var/lib/apt/lists/*
-
+rm -rvf /var/lib/apt/lists/*
